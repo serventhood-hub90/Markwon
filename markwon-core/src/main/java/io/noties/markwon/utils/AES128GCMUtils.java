@@ -135,8 +135,13 @@ public abstract class AES128GCMUtils {
         byte[] bytes = new byte[hex.length() / 2];
         for (int i = 0; i < bytes.length; i++) {
             int index = i * 2;
-            int value = Integer.parseInt(hex.substring(index, index + 2), 16);
-            bytes[i] = (byte) value;
+            try {
+                int value = Integer.parseInt(hex.substring(index, index + 2), 16);
+                bytes[i] = (byte) value;
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(
+                        "Invalid hex character at position " + index + ": " + hex.substring(index, index + 2));
+            }
         }
         return bytes;
     }

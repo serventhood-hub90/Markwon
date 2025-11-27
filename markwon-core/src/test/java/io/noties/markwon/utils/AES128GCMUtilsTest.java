@@ -179,6 +179,11 @@ public class AES128GCMUtilsTest {
         AES128GCMUtils.hexToBytes("abc");
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void hexToBytes_invalid_characters() {
+        AES128GCMUtils.hexToBytes("abzz");
+    }
+
     @Test
     public void hex_roundtrip() {
         byte[] original = {0x12, 0x34, 0x56, 0x78, (byte) 0x9a, (byte) 0xbc, (byte) 0xde, (byte) 0xf0};
