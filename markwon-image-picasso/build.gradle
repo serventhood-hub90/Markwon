@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
 
+    namespace 'io.noties.markwon.image.picasso'
     compileSdkVersion config['compile-sdk']
     buildToolsVersion config['build-tools']
 
