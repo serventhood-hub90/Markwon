@@ -1,7 +1,9 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android-extensions'
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
 
 def gitSha = { ->
     def output = new ByteArrayOutputStream()
@@ -14,6 +16,7 @@ def gitSha = { ->
 
 android {
 
+    namespace 'io.noties.markwon.app'
     compileSdkVersion config['compile-sdk']
     buildToolsVersion config['build-tools']
 
@@ -38,9 +41,8 @@ android {
         ]
     }
 
-    dexOptions {
-        preDexLibraries true
-        javaMaxHeapSize '5g'
+    buildFeatures {
+        buildConfig = true
     }
 
     compileOptions {
@@ -106,10 +108,6 @@ kapt {
     arguments {
         arg('markwon.samples.file', "${projectDir}/samples.json".toString())
     }
-}
-
-androidExtensions {
-    features = ["parcelize"]
 }
 
 configurations.all {
