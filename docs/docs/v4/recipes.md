@@ -4,12 +4,14 @@
 ## SpannableFactory
 
 Consider using `NoCopySpannableFactory` when a `TextView` will be used to display markdown
-multiple times (for example in a `RecyclerView`):
+multiple times (for example in a [RecyclerView]):
 
 ```java
 // call after inflation and before setting markdown
 textView.setSpannableFactory(NoCopySpannableFactory.getInstance());
 ```
+
+[RecyclerView]: https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView
 
 
 ## Autolink

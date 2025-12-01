@@ -5,8 +5,10 @@
 <MavenBadge :artifact="'recycler'" />
 
 This artifact allows displaying markdown in a set of Android widgets
-inside a RecyclerView. Can be useful when displaying lengthy markdown
+inside a [RecyclerView]. Can be useful when displaying lengthy markdown
 content or **displaying certain markdown blocks inside specific widgets**.
+
+[RecyclerView]: https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView
 
 ```java
 // create an adapter that will use a TextView for each block of markdown

@@ -8,7 +8,7 @@ A plugin to automatically add links to your markdown. Currently autolinking work
 * web URLS
 
 :::warning
-`Linkify` plugin is based on `android.text.util.Linkify` which can lead to significant performance 
+`Linkify` plugin is based on [Linkify] which can lead to significant performance 
 drop due to its implementation based on regex.
 :::
 
@@ -29,3 +29,5 @@ final Markwon markwon = Markwon.builder(context)
         .usePlugin(LinkifyPlugin.create(Linkify.EMAIL_ADDRESSES))
         .build();
 ```
+
+[Linkify]: https://developer.android.com/reference/android/text/util/Linkify

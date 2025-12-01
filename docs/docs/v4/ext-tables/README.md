@@ -62,8 +62,10 @@ final Markwon markwon = Markwon.builder(context)
 
 In order to provide full-fledged experience, tables must be displayed in a special widget.
 Since version `3.0.0` Markwon provides a special artifact `markwon-recycler` that allows
-to render markdown in a set of widgets in a RecyclerView. It also gives ability to change
+to render markdown in a set of widgets in a [RecyclerView]. It also gives ability to change
 display widget form TextView to any other.
+
+[RecyclerView]: https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView
 
 ```java
 final Table table = Table.parse(Markwon, TableBlock);
