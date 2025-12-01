@@ -5,7 +5,9 @@
 <MavenBadge :artifact="'recycler-table'" />
 
 Artifact that provides [MarkwonAdapter.Entry](/docs/v3/recycler/) to render `TableBlock` inside 
-Android-native `TableLayout` widget.
+Android-native [TableLayout] widget.
+
+[TableLayout]: https://developer.android.com/reference/android/widget/TableLayout
 
 <img :src="$withBase('/assets/recycler-table-screenshot.png')" alt="screenshot" width="45%">
 <br>
@@ -44,7 +46,9 @@ Do not use `TablePlugin` if you wish to display markdown tables via `TableEntry`
 :::
 
 `TableEntryPlugin` can reuse existing `TablePlugin` to make appearance of tables the same in both contexts:
-when rendering _natively_ in a TextView and when rendering in RecyclerView with TableEntry.
+when rendering _natively_ in a TextView and when rendering in [RecyclerView] with TableEntry.
+
+[RecyclerView]: https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView
 
 * `TableEntryPlugin.create(Context)` - creates plugin with default `TableTheme`
 * `TableEntryPlugin.create(TableTheme)` - creates plugin with provided `TableTheme`
