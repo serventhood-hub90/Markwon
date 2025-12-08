@@ -33,6 +33,10 @@ public abstract class TimestampLogger {
     /**
      * Get current timestamp formatted as HH:MM:SS:mmm
      * 
+     * Note: This method calls System.currentTimeMillis() on each invocation to provide
+     * accurate timestamps for logging. This is intentional for logging use cases where
+     * the actual time of the log message is important.
+     * 
      * @return formatted current timestamp
      */
     @NonNull

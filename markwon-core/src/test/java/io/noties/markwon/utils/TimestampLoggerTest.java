@@ -112,7 +112,7 @@ public class TimestampLoggerTest {
         String result = TimestampLogger.getCurrentTimestamp();
         // Just verify it doesn't throw and returns something
         assertNotNull(result);
-        assertTrue(result.length() == 15); // "HH:MM:SS:mmm" = 15 characters
+        assertEquals(15, result.length()); // "HH:MM:SS:mmm" = 15 characters
     }
 
     @Test
