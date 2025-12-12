@@ -130,6 +130,7 @@ dependencies {
     implementation project(':markwon-ext-strikethrough')
     implementation project(':markwon-ext-tables')
     implementation project(':markwon-ext-tasklist')
+    implementation project(':markwon-ext-toc')
     implementation project(':markwon-html')
     implementation project(':markwon-image')
     implementation project(':markwon-inline-parser')

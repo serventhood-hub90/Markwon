@@ -11,6 +11,7 @@ public enum MarkwonArtifact {
     EXT_STRIKETHROUGH,
     EXT_TABLES,
     EXT_TASKLIST,
+    EXT_TOC,
     HTML,
     IMAGE,
     IMAGE_COIL,
