@@ -102,6 +102,10 @@ public class TocPlugin extends AbstractMarkwonPlugin {
 
     /**
      * Visitor that collects all headings and builds a nested bullet list.
+     * 
+     * This implementation creates a simple flat list structure where heading levels
+     * are represented by indentation (nested lists). Each heading becomes a list item
+     * with a link, and deeper levels are nested within parent items.
      */
     private static class HeadingCollector extends AbstractVisitor {
         final BulletList bulletList = new BulletList();
@@ -118,32 +122,34 @@ public class TocPlugin extends AbstractMarkwonPlugin {
                 // Get heading level (1-6)
                 final int level = heading.getLevel();
 
-                // Build heading title
+                // Build heading title by visiting children
                 visitChildren(heading);
+                final String content = builder.toString();
 
-                // Create nested list structure based on heading level
+                // Create the list item that will contain this heading
                 final ListItem listItem = new ListItem();
 
-                Node parent = listItem;
-                Node node = listItem;
-
-                // Create nesting for levels 2-6
+                // Navigate to the correct nesting level
+                // Level 1 headings go directly in bulletList
+                // Level 2+ headings need nested lists
+                Node targetNode = listItem;
+                
                 for (int i = 1; i < level; i++) {
-                    final ListItem li = new ListItem();
+                    // Create nested structure for deeper levels
+                    final ListItem nestedLi = new ListItem();
                     final BulletList nestedList = new BulletList();
-                    nestedList.appendChild(li);
-                    parent.appendChild(nestedList);
-                    parent = li;
-                    node = li;
+                    nestedList.appendChild(nestedLi);
+                    targetNode.appendChild(nestedList);
+                    targetNode = nestedLi;
                 }
 
                 // Create the link with heading content
-                final String content = builder.toString();
                 final Link link = new Link("#" + createAnchor(content), null);
                 final Text text = new Text(content);
                 link.appendChild(text);
-                node.appendChild(link);
+                targetNode.appendChild(link);
                 
+                // Add to the root bullet list
                 bulletList.appendChild(listItem);
 
             } finally {
@@ -168,7 +174,10 @@ public class TocPlugin extends AbstractMarkwonPlugin {
 
     /**
      * Creates an anchor ID from heading content.
-     * Follows a simple convention: lowercase, remove non-word characters.
+     * Follows a simple convention: lowercase, remove non-word characters, replace spaces with hyphens.
+     * 
+     * Note: Duplicate headings will produce duplicate anchor IDs. When clicked, the link will
+     * navigate to the first occurrence. This is consistent with standard TOC behavior.
      * 
      * @param content the heading text
      * @return anchor string suitable for linking
