@@ -29,3 +29,17 @@ final Markwon markwon = Markwon.builder(context)
         .usePlugin(LinkifyPlugin.create(Linkify.EMAIL_ADDRESSES))
         .build();
 ```
+
+## OAuth and Long URLs
+
+The LinkifyPlugin properly handles long URLs, including OAuth2 authorization URLs with complex query parameters. For example, URLs like:
+
+```
+https://example.com/oauth2/authorize?redirect_uri=com.example.app%3A%2Fcallback&state=...
+```
+
+will be correctly linkified, even when the `redirect_uri` parameter contains custom URI schemes (e.g., `com.example.app://callback`).
+
+:::tip
+For OAuth flows, ensure your redirect URIs are properly URL-encoded in the authorization URL. The LinkifyPlugin will preserve the full URL including all query parameters.
+:::
